@@ -78,7 +78,7 @@ public class UserService implements UserServiceInterface, UserDetailsService {
      */
     @Override
     public User saveUser(User user) {
-        log.info("Saving new user {} to the database", user.getName());
+        log.info("Saving new user {} to the database", user.getUsername());
         // Encode the user's password for security before saving
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);

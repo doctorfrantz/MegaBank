@@ -28,10 +28,7 @@ public class User {
      */
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    /**
-     * The name of the user
-     */
-    private String name;
+
 
     /**
      * The username used to log in
