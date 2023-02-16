@@ -13,15 +13,15 @@ public class ThirdParty extends User {
     private String name;
     private Integer hashedKey;
 
-    public ThirdParty(Long id, String username, String password, Collection<Role> roles) {
-        super(id, username, password, roles);
+    public ThirdParty(String username, String password, Collection<Role> roles) {
+        super(username, password, roles);
     }
 
     public ThirdParty() {
     }
 
-    public ThirdParty(Long id, String username, String password, Collection<Role> roles, String name, Integer hashedKey) {
-        super(id, username, password, roles);
+    public ThirdParty(String username, String password, Collection<Role> roles, String name, Integer hashedKey) {
+        super(username, password, roles);
         this.name = name;
         this.hashedKey = hashedKey;
     }

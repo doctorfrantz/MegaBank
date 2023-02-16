@@ -3,7 +3,9 @@ package com.ironhack.demosecurityjwt.models.users;
 import com.ironhack.demosecurityjwt.models.Role;
 import com.ironhack.demosecurityjwt.models.User;
 import com.ironhack.demosecurityjwt.tools.Address;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -18,26 +20,28 @@ public class AccountHolder extends User {
 
     private LocalDate dateOfBirth;
 
+    @NotNull
     private Address primaryAddress;
 
-    private Address mailingAddress;
+    @Nullable
+    private String mailingAddress;
 
-    public AccountHolder(Long id, String username, String password, Collection<Role> roles) {
-        super(id, username, password, roles);
+    public AccountHolder(String username, String password, Collection<Role> roles) {
+        super(username, password, roles);
     }
 
     public AccountHolder() {
     }
 
-    public AccountHolder(Long id, String username, String password, Collection<Role> roles, String name, LocalDate dateOfBirth, Address primaryAddress, Address mailingAddress) {
-        super(id, username, password, roles);
+    public AccountHolder(String username, String password, Collection<Role> roles, String name, LocalDate dateOfBirth, Address primaryAddress, String mailingAddress) {
+        super(username, password, roles);
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.primaryAddress = primaryAddress;
         this.mailingAddress = mailingAddress;
     }
 
-    public AccountHolder(String name, LocalDate dateOfBirth, Address primaryAddress, Address mailingAddress) {
+    public AccountHolder(String name, LocalDate dateOfBirth, Address primaryAddress, String mailingAddress) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.primaryAddress = primaryAddress;
@@ -68,11 +72,11 @@ public class AccountHolder extends User {
         this.primaryAddress = primaryAddress;
     }
 
-    public Address getMailingAddress() {
+    public String getMailingAddress() {
         return mailingAddress;
     }
 
-    public void setMailingAddress(Address mailingAddress) {
+    public void setMailingAddress(String mailingAddress) {
         this.mailingAddress = mailingAddress;
     }
 }

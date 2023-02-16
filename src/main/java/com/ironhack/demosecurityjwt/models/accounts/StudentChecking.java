@@ -1,7 +1,6 @@
 package com.ironhack.demosecurityjwt.models.accounts;
 
 import com.ironhack.demosecurityjwt.models.users.AccountHolder;
-import com.ironhack.demosecurityjwt.tools.Money;
 import com.ironhack.demosecurityjwt.tools.Status;
 import jakarta.persistence.Entity;
 
@@ -16,7 +15,7 @@ public class StudentChecking extends Account{
     public StudentChecking() {
     }
 
-    public StudentChecking(Money balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status) {
+    public StudentChecking(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status) {
         super(balance, primaryOwner, secondayOwner, penaltyFee, creationDate, updateDate, status);
     }
 
@@ -24,7 +23,7 @@ public class StudentChecking extends Account{
         this.secretKey = secretKey;
     }
 
-    public StudentChecking(Money balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status, String secretKey) {
+    public StudentChecking(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status, String secretKey) {
         super(balance, primaryOwner, secondayOwner, penaltyFee, creationDate, updateDate, status);
         this.secretKey = secretKey;
     }

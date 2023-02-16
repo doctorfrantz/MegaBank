@@ -1,7 +1,6 @@
 package com.ironhack.demosecurityjwt.models.accounts;
 
 import com.ironhack.demosecurityjwt.models.users.AccountHolder;
-import com.ironhack.demosecurityjwt.tools.Money;
 import com.ironhack.demosecurityjwt.tools.Status;
 import jakarta.persistence.Entity;
 
@@ -16,22 +15,22 @@ public class Savings extends Account{
     private BigDecimal interestRate;
 
     private String secretKey;
-    private Money minimumBalance;
+    private BigDecimal minimumBalance;
 
     public Savings() {
     }
 
-    public Savings(Money balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status) {
+    public Savings(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status) {
         super(balance, primaryOwner, secondayOwner, penaltyFee, creationDate, updateDate, status);
     }
 
-    public Savings(BigDecimal interestRate, String secretKey, Money minimumBalance) {
+    public Savings(BigDecimal interestRate, String secretKey, BigDecimal minimumBalance) {
         this.interestRate = interestRate;
         this.secretKey = secretKey;
         this.minimumBalance = minimumBalance;
     }
 
-    public Savings(Money balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status, BigDecimal interestRate, String secretKey, Money minimumBalance) {
+    public Savings(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status, BigDecimal interestRate, String secretKey, BigDecimal minimumBalance) {
         super(balance, primaryOwner, secondayOwner, penaltyFee, creationDate, updateDate, status);
         this.interestRate = interestRate;
         this.secretKey = secretKey;
@@ -54,11 +53,11 @@ public class Savings extends Account{
         this.secretKey = secretKey;
     }
 
-    public Money getMinimumBalance() {
+    public BigDecimal getMinimumBalance() {
         return minimumBalance;
     }
 
-    public void setMinimumBalance(Money minimumBalance) {
+    public void setMinimumBalance(BigDecimal minimumBalance) {
         this.minimumBalance = minimumBalance;
     }
 }

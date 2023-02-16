@@ -1,7 +1,6 @@
 package com.ironhack.demosecurityjwt.models.accounts;
 
 import com.ironhack.demosecurityjwt.models.users.AccountHolder;
-import com.ironhack.demosecurityjwt.tools.Money;
 import com.ironhack.demosecurityjwt.tools.Status;
 import jakarta.persistence.*;
 
@@ -22,10 +21,14 @@ public abstract class Account {
     @Id
     public Integer accountId;
 
-    public Money balance;
+    public BigDecimal balance;
 
+    @ManyToOne
+    @JoinColumn(name = "primary_owner_id")
     public AccountHolder primaryOwner;
 
+    @ManyToOne
+    @JoinColumn(name = "seconday_owner_id")
     public AccountHolder secondayOwner;
 
     public BigDecimal penaltyFee;
@@ -40,7 +43,7 @@ public abstract class Account {
     public Account() {
     }
 
-    public Account(Money balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status) {
+    public Account(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status) {
         this.balance = balance;
         this.primaryOwner = primaryOwner;
         this.secondayOwner = secondayOwner;
@@ -50,11 +53,11 @@ public abstract class Account {
         this.status = status;
     }
 
-    public Money getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(Money balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 

@@ -5,6 +5,7 @@ import com.ironhack.demosecurityjwt.controllers.interfaces.RoleControllerInterfa
 import com.ironhack.demosecurityjwt.models.Role;
 import com.ironhack.demosecurityjwt.services.interfaces.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,7 @@ public class RoleController implements RoleControllerInterface {
      * User service for accessing user data
      */
     @Autowired
+    @Lazy
     private UserServiceInterface userService;
 
     /**

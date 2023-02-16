@@ -1,7 +1,6 @@
 package com.ironhack.demosecurityjwt.models.accounts;
 
 import com.ironhack.demosecurityjwt.models.users.AccountHolder;
-import com.ironhack.demosecurityjwt.tools.Money;
 import com.ironhack.demosecurityjwt.tools.Status;
 import jakarta.persistence.Entity;
 
@@ -12,33 +11,33 @@ import java.util.Date;
 public class CreditCard extends Account{
     /* - creditLimit: Money;
 - interestRate: BigDecimal;*/
-    private Money creditLimit;
+    private BigDecimal creditLimit;
 
     private BigDecimal interestRate;
 
     public CreditCard() {
     }
 
-    public CreditCard(Money balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status) {
+    public CreditCard(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status) {
         super(balance, primaryOwner, secondayOwner, penaltyFee, creationDate, updateDate, status);
     }
 
-    public CreditCard(Money creditLimit, BigDecimal interestRate) {
+    public CreditCard(BigDecimal creditLimit, BigDecimal interestRate) {
         this.creditLimit = creditLimit;
         this.interestRate = interestRate;
     }
 
-    public CreditCard(Money balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status, Money creditLimit, BigDecimal interestRate) {
+    public CreditCard(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status, BigDecimal creditLimit, BigDecimal interestRate) {
         super(balance, primaryOwner, secondayOwner, penaltyFee, creationDate, updateDate, status);
         this.creditLimit = creditLimit;
         this.interestRate = interestRate;
     }
 
-    public Money getCreditLimit() {
+    public BigDecimal getCreditLimit() {
         return creditLimit;
     }
 
-    public void setCreditLimit(Money creditLimit) {
+    public void setCreditLimit(BigDecimal creditLimit) {
         this.creditLimit = creditLimit;
     }
 

@@ -1,5 +1,9 @@
 package com.ironhack.demosecurityjwt.tools;
 
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Entity;
+
+@Embeddable
 public class Address {
     /* - street: String;
 - city: String;

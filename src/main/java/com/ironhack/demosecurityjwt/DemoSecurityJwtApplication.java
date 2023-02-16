@@ -20,7 +20,7 @@ public class DemoSecurityJwtApplication {
         SpringApplication.run(DemoSecurityJwtApplication.class, args);
     }
 
-    @Bean
+    /* @Bean
     PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
@@ -42,6 +42,6 @@ public class DemoSecurityJwtApplication {
             userService.addRoleToUser("chris", "ROLE_ADMIN");
             userService.addRoleToUser("chris", "ROLE_USER");
         };
-    }
+    } */
 
 }

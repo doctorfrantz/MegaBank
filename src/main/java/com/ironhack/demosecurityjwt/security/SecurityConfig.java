@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -30,6 +31,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class SecurityConfig {
     // UserDetailsService is an interface provided by Spring Security that defines a way to retrieve user information
     @Autowired
+    @Lazy
     private UserDetailsService userDetailsService;
 
     // Autowired instance of the AuthenticationManagerBuilder
@@ -41,6 +43,7 @@ public class SecurityConfig {
      *
      * @return an instance of the DelegatingPasswordEncoder
      */
+
     @Bean
     public PasswordEncoder encoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -53,6 +56,8 @@ public class SecurityConfig {
      * @return an instance of the AuthenticationManager
      * @throws Exception if there is an issue getting the instance of the AuthenticationManager
      */
+
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();

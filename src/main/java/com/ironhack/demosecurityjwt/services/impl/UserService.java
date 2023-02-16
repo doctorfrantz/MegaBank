@@ -8,6 +8,7 @@ import com.ironhack.demosecurityjwt.services.interfaces.UserServiceInterface;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -28,6 +29,7 @@ public class UserService implements UserServiceInterface, UserDetailsService {
      * Autowired UserRepository for database operations.
      */
     @Autowired
+    @Lazy
     private UserRepository userRepository;
 
     /**

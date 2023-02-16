@@ -3,6 +3,7 @@ package com.ironhack.demosecurityjwt.controllers.impl;
 import com.ironhack.demosecurityjwt.models.User;
 import com.ironhack.demosecurityjwt.services.interfaces.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,7 @@ public class UserController {
      * User service for accessing user data
      */
     @Autowired
+    @Lazy
     private UserServiceInterface userService;
 
     /**

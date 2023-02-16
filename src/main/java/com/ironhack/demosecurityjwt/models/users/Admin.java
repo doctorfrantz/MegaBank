@@ -11,15 +11,15 @@ public class Admin extends User {
     /* - name: String; */
     private String name;
 
-    public Admin(Long id, String username, String password, Collection<Role> roles) {
-        super(id, username, password, roles);
+    public Admin(String username, String password, Collection<Role> roles) {
+        super(username, password, roles);
     }
 
     public Admin() {
     }
 
-    public Admin(Long id, String username, String password, Collection<Role> roles, String name) {
-        super(id, username, password, roles);
+    public Admin(String username, String password, Collection<Role> roles, String name) {
+        super(username, password, roles);
         this.name = name;
     }
 
