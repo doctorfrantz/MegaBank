@@ -2,11 +2,12 @@ package com.ironhack.demosecurityjwt.models.users;
 
 import com.ironhack.demosecurityjwt.models.Role;
 import com.ironhack.demosecurityjwt.models.User;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 import java.util.Collection;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Admin extends User {
     /* - name: String; */
     private String name;

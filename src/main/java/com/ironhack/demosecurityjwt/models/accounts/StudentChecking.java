@@ -2,12 +2,13 @@ package com.ironhack.demosecurityjwt.models.accounts;
 
 import com.ironhack.demosecurityjwt.models.users.AccountHolder;
 import com.ironhack.demosecurityjwt.tools.Status;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class StudentChecking extends Account{
     /* - secretKey: String; */
     private String secretKey;

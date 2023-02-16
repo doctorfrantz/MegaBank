@@ -5,12 +5,14 @@ import com.ironhack.demosecurityjwt.models.User;
 import com.ironhack.demosecurityjwt.tools.Address;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.util.Collection;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class AccountHolder extends User {
     /* - name: String;
 - dateOfBirth: LocalDate;

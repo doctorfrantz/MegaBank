@@ -16,6 +16,7 @@ import static jakarta.persistence.FetchType.EAGER;
  */
 @Entity
 @Data
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
     /**
      * The unique identifier for the user

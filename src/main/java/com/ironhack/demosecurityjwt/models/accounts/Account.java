@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Account {
     /* + accountId: Integer - Auto Inc
 + balance: Money
