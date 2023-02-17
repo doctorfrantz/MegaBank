@@ -29,6 +29,8 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+
+
     // UserDetailsService is an interface provided by Spring Security that defines a way to retrieve user information
     @Autowired
     @Lazy
@@ -82,10 +84,11 @@ public class SecurityConfig {
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         // set up authorization for different request matchers and user roles
         http.authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/api/login/**").permitAll()
+               /* .requestMatchers("/api/login/**").permitAll()
                 .requestMatchers(GET, "/api/users").hasAnyAuthority("ROLE_USER")
                 .requestMatchers(POST, "/api/users").hasAnyAuthority("ROLE_ADMIN")
-                .anyRequest().authenticated());
+                .anyRequest().authenticated());*/
+                       .anyRequest().permitAll());
         // add the custom authentication filter to the http security object
         http.addFilter(customAuthenticationFilter);
         // Add the custom authorization filter before the standard authentication filter.

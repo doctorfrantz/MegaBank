@@ -15,10 +15,14 @@ public class Checking extends Account{
 - minimumBalance: BigDecimal;
 - monthlyMaintenanceFee: BigDecimal;*/
     private String secretKey;
-
     private BigDecimal minimumBalance;
-
     private BigDecimal monthlyMaintenanceFee;
+
+    //should have a minimumBalance of 250
+    private static final BigDecimal MINIMUM_BALANCE = new BigDecimal("250.00");
+
+    //should have a monthlyMaintenanceFee of 12
+    private static final BigDecimal MONTHLY_MAINTENANCE_FEE = new BigDecimal("12.00");
 
     public Checking() {
     }
@@ -29,15 +33,15 @@ public class Checking extends Account{
 
     public Checking(String secretKey, BigDecimal minimumBalance, BigDecimal monthlyMaintenanceFee) {
         this.secretKey = secretKey;
-        this.minimumBalance = minimumBalance;
-        this.monthlyMaintenanceFee = monthlyMaintenanceFee;
+        setMinimumBalance(minimumBalance);
+        setMonthlyMaintenanceFee(monthlyMaintenanceFee);
     }
 
     public Checking(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status, String secretKey, BigDecimal minimumBalance, BigDecimal monthlyMaintenanceFee) {
         super(balance, primaryOwner, secondayOwner, penaltyFee, creationDate, updateDate, status);
         this.secretKey = secretKey;
-        this.minimumBalance = minimumBalance;
-        this.monthlyMaintenanceFee = monthlyMaintenanceFee;
+        setMinimumBalance(minimumBalance);
+        setMonthlyMaintenanceFee(monthlyMaintenanceFee);
     }
 
     public String getSecretKey() {
@@ -53,7 +57,7 @@ public class Checking extends Account{
     }
 
     public void setMinimumBalance(BigDecimal minimumBalance) {
-        this.minimumBalance = minimumBalance;
+        this.minimumBalance = MINIMUM_BALANCE;
     }
 
     public BigDecimal getMonthlyMaintenanceFee() {
@@ -61,6 +65,6 @@ public class Checking extends Account{
     }
 
     public void setMonthlyMaintenanceFee(BigDecimal monthlyMaintenanceFee) {
-        this.monthlyMaintenanceFee = monthlyMaintenanceFee;
+        this.monthlyMaintenanceFee = MONTHLY_MAINTENANCE_FEE;
     }
 }
