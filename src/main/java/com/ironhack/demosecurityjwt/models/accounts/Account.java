@@ -13,15 +13,6 @@ import java.util.Random;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Account {
-    /* + accountId: Integer - Auto Inc
-+ balance: Money
-+ primaryOwner: AccountHolder
-+ secondaryOwner: @Nullable AccountHolder
-+ penaltyFee: BigDecimal
-+ creationDate: Date
-+ updateDate: @Nullable Date
-- status: Enum(FROZEN, ACTIVE);
-*/
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer accountId;
