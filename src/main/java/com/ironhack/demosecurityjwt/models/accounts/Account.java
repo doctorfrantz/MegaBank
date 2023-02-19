@@ -23,6 +23,7 @@ public abstract class Account {
 - status: Enum(FROZEN, ACTIVE);
 */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer accountId;
 
     public BigDecimal balance;
