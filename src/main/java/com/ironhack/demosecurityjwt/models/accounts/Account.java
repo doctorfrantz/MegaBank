@@ -3,9 +3,12 @@ package com.ironhack.demosecurityjwt.models.accounts;
 import com.ironhack.demosecurityjwt.models.users.AccountHolder;
 import com.ironhack.demosecurityjwt.tools.Status;
 import jakarta.persistence.*;
+import org.springframework.lang.Nullable;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Objects;
+import java.util.Random;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -29,14 +32,14 @@ public abstract class Account {
     public AccountHolder primaryOwner;
 
     @ManyToOne
-    @JoinColumn(name = "seconday_owner_id")
-    public AccountHolder secondayOwner;
+    @JoinColumn(name = "secondary_owner_id")
+    public AccountHolder secondaryOwner;
 
     public BigDecimal penaltyFee;
 
-    public Date creationDate;
+    public LocalDate creationDate;
 
-    public Date updateDate;
+    public LocalDate updateDate;
 
     @Enumerated(EnumType.STRING)
     public Status status;
@@ -44,14 +47,50 @@ public abstract class Account {
     public Account() {
     }
 
-    public Account(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status) {
+    public Account(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, LocalDate creationDate) {
         this.balance = balance;
         this.primaryOwner = primaryOwner;
-        this.secondayOwner = secondayOwner;
+        this.secondaryOwner = secondaryOwner;
+        this.creationDate = creationDate;
+    }
+
+    public Account(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, LocalDate creationDate, LocalDate updateDate, Status status) {
+        this.balance = balance;
+        this.primaryOwner = primaryOwner;
+        this.secondaryOwner = secondayOwner;
         this.penaltyFee = penaltyFee;
         this.creationDate = creationDate;
         this.updateDate = updateDate;
         this.status = status;
+    }
+
+    public Account(BigDecimal balance, AccountHolder accountHolder, @Nullable AccountHolder secondaryAccountHolder, LocalDate creationDate, @Nullable LocalDate lastModifiedDate) {
+        setBalance(balance);
+        setPrimaryOwner(accountHolder);
+        setPenaltyFee(penaltyFee);
+        setSecondaryOwner(secondaryAccountHolder);
+        setCreationDate(creationDate);
+        setUpdateDate(lastModifiedDate);
+    }
+
+
+    public Account(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, LocalDate creationDate, LocalDate updateDate, Status status) {
+        this.balance = balance;
+        this.primaryOwner = primaryOwner;
+        this.secondaryOwner = secondaryOwner;
+        this.creationDate = creationDate;
+        this.updateDate = updateDate;
+        this.status = status;
+    }
+
+    public void transferMoney(Account accountReceiver, BigDecimal amountToSend) {
+        if (balance.compareTo(amountToSend) < 0) {
+            throw new IllegalArgumentException("The amount to send cannot be greater than the account's current balance.");
+        } else if (Objects.equals(accountId, accountReceiver.getAccountId())) {
+            throw new IllegalArgumentException("The amount cannot be sent to the same account.");
+        }
+        setBalance(balance.subtract(amountToSend));
+        accountReceiver.setBalance(accountReceiver.getBalance().add(amountToSend));
     }
 
     public Integer getAccountId() {
@@ -59,7 +98,8 @@ public abstract class Account {
     }
 
     public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
+        Random random = new Random();
+        this.accountId = random.nextInt(1000) + 1;
     }
 
     public BigDecimal getBalance() {
@@ -78,12 +118,12 @@ public abstract class Account {
         this.primaryOwner = primaryOwner;
     }
 
-    public AccountHolder getSecondayOwner() {
-        return secondayOwner;
+    public AccountHolder getSecondaryOwner() {
+        return secondaryOwner;
     }
 
-    public void setSecondayOwner(AccountHolder secondayOwner) {
-        this.secondayOwner = secondayOwner;
+    public void setSecondaryOwner(AccountHolder secondaryOwner) {
+        this.secondaryOwner = secondaryOwner;
     }
 
     public BigDecimal getPenaltyFee() {
@@ -94,19 +134,19 @@ public abstract class Account {
         this.penaltyFee = penaltyFee;
     }
 
-    public Date getCreationDate() {
+    public LocalDate getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
 
-    public Date getUpdateDate() {
+    public LocalDate getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(LocalDate updateDate) {
         this.updateDate = updateDate;
     }
 

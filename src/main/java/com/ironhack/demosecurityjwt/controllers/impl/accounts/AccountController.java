@@ -1,14 +1,13 @@
 package com.ironhack.demosecurityjwt.controllers.impl.accounts;
 
+import com.ironhack.demosecurityjwt.models.DTO.AccountDTO;
+import com.ironhack.demosecurityjwt.models.DTO.TransferDto;
 import com.ironhack.demosecurityjwt.models.accounts.Account;
 import com.ironhack.demosecurityjwt.services.impl.accounts.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,10 +16,34 @@ public class AccountController {
     @Autowired
     AccountService accountService;
 
-    /* @PreAuthorize("#accountId == principal.user.userId or hasRole('ROLE_ADMIN')")
-    @GetMapping("/account/{userId}")
+    //Get cuentas por id de usuario
+    @GetMapping("/accountsByUserId/{Id}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Account> getAllAccountsByUserId(@PathVariable(value="userId") Integer userId) {
-        return accountService.getAllAccountsByUserId(userId);
-    } */
+    public List<Account> getAllAccountsByUserId(@PathVariable(value = "Id") Integer userId) {
+        return accountService.getAllAccountsById(userId);
+    }
+
+
+    //hacer transferencias
+    @PatchMapping("/account/transfer/{accountId}")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean transferMoney(@PathVariable(value = "accountId") Integer accountId, @RequestBody TransferDto request) {
+        return accountService.transferMoney(request.getSenderAccountId(), request.getReceiverName(), request.getReceiverAccountId(), request.getAmount());
+    }
+    /* Body de la transferencia:
+    {
+    "senderAccountId": 1,
+    "receiverName": "George",
+    "receiverAccountId": 2,
+    "amount": 30.00
+    }*/
+
+    //crear cuentas
+    @PostMapping("/create/{accountType}/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createAccount(@PathVariable String accountType, @PathVariable String id, @RequestBody AccountDTO accountDTO) {
+
+        accountService.createAccount(accountType, id, accountDTO);
+
+    }
 }

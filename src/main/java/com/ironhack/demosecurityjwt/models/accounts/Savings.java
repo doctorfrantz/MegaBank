@@ -5,7 +5,7 @@ import com.ironhack.demosecurityjwt.tools.Status;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -34,7 +34,7 @@ public class Savings extends Account{
         this.minimumBalance = DEFAULT_MINIMUM_BALANCE;
     }
 
-    public Savings(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status) {
+    public Savings(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, LocalDate creationDate, LocalDate updateDate, Status status) {
         super(balance, primaryOwner, secondayOwner, penaltyFee, creationDate, updateDate, status);
     }
 
@@ -50,7 +50,7 @@ public class Savings extends Account{
         this.minimumBalance = DEFAULT_MINIMUM_BALANCE;
     }
 
-    public Savings(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status, BigDecimal interestRate, String secretKey, BigDecimal minimumBalance) {
+    public Savings(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, LocalDate creationDate, LocalDate updateDate, Status status, BigDecimal interestRate, String secretKey, BigDecimal minimumBalance) {
         super(balance, primaryOwner, secondayOwner, penaltyFee, creationDate, updateDate, status);
         if (minimumBalance.compareTo(BigDecimal.valueOf(100)) < 0 || minimumBalance.compareTo(DEFAULT_MINIMUM_BALANCE) > 0) {
             throw new IllegalArgumentException("Savings accounts may be instantiated with a minimum balance of less than 1000 but no lower than 100");
@@ -60,7 +60,7 @@ public class Savings extends Account{
         setMinimumBalance(minimumBalance);
     }
 
-    public Savings(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status, String secretKey) {
+    public Savings(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, LocalDate creationDate, LocalDate updateDate, Status status, String secretKey) {
         super(balance, primaryOwner, secondayOwner, penaltyFee, creationDate, updateDate, status);
         this.interestRate = DEFAULT_INTEREST_RATE;
         this.secretKey = secretKey;

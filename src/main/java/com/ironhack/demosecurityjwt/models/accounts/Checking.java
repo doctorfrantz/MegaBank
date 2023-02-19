@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -27,8 +28,20 @@ public class Checking extends Account{
     public Checking() {
     }
 
-    public Checking(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status) {
-        super(balance, primaryOwner, secondayOwner, penaltyFee, creationDate, updateDate, status);
+    public Checking(AccountHolder accountHolder) {
+        super(BigDecimal.valueOf(0.00), accountHolder, null, LocalDate.now(), null);
+        setSecretKey("123");
+        setMinimumBalance(null);
+        setMonthlyMaintenanceFee(null);
+        setStatus(Status.ACTIVE);
+    }
+    public Checking(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, LocalDate creationDate, LocalDate updateDate, Status status) {
+        super(balance, primaryOwner, secondaryOwner, creationDate, updateDate, status);
+    }
+
+    public Checking(BigDecimal balance, String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner, LocalDate creationDate) {
+        super(balance, primaryOwner, secondaryOwner, creationDate);
+        this.creationDate = creationDate;
     }
 
     public Checking(String secretKey, BigDecimal minimumBalance, BigDecimal monthlyMaintenanceFee) {
@@ -37,12 +50,13 @@ public class Checking extends Account{
         setMonthlyMaintenanceFee(monthlyMaintenanceFee);
     }
 
-    public Checking(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status, String secretKey, BigDecimal minimumBalance, BigDecimal monthlyMaintenanceFee) {
-        super(balance, primaryOwner, secondayOwner, penaltyFee, creationDate, updateDate, status);
+    public Checking(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, LocalDate creationDate, LocalDate updateDate, Status status, String secretKey, BigDecimal minimumBalance, BigDecimal monthlyMaintenanceFee) {
+        super(balance, primaryOwner, secondayOwner, creationDate, updateDate, status);
         this.secretKey = secretKey;
         setMinimumBalance(minimumBalance);
         setMonthlyMaintenanceFee(monthlyMaintenanceFee);
     }
+
 
     public String getSecretKey() {
         return secretKey;

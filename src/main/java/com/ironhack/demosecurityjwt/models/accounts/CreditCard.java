@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -36,7 +36,7 @@ public class CreditCard extends Account{
     public CreditCard() {
     }
 
-    public CreditCard(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status) {
+    public CreditCard(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, LocalDate creationDate, LocalDate updateDate, Status status) {
         super(balance, primaryOwner, secondayOwner, penaltyFee, creationDate, updateDate, status);
     }
 
@@ -45,7 +45,7 @@ public class CreditCard extends Account{
         setInterestRate(interestRate);
     }
 
-    public CreditCard(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, Date creationDate, Date updateDate, Status status, BigDecimal creditLimit, BigDecimal interestRate) {
+    public CreditCard(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondayOwner, BigDecimal penaltyFee, LocalDate creationDate, LocalDate updateDate, Status status, BigDecimal creditLimit, BigDecimal interestRate) {
         super(balance, primaryOwner, secondayOwner, penaltyFee, creationDate, updateDate, status);
         setCreditLimit(creditLimit);
         setInterestRate(interestRate);

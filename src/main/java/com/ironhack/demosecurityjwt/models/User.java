@@ -8,6 +8,7 @@ import org.springframework.data.repository.cdi.Eager;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
 
 import static jakarta.persistence.FetchType.EAGER;
 
@@ -59,7 +60,7 @@ public class User {
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;;
     }
 
     public String getUsername() {
